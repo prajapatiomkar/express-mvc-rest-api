@@ -9,3 +9,15 @@
 17-02-2023	10:53:35	f08110d3-d072-4064-b3d1-3bcf6a5a3691	POST	undefined	/employees/
 17-02-2023	10:54:47	ff83c341-de81-4052-9d51-8c196eb6b467	PUT	undefined	/employees/
 17-02-2023	10:56:23	8bc1b2f8-5cd7-46c6-b51e-91a03fc9e327	DELETE	undefined	/employees/
+17-02-2023	11:38:36	cd8f7625-18b7-4696-8876-072cafa189d7	POST	undefined	/register
+17-02-2023	11:40:04	8f4ef590-f585-4d04-bba7-a1eb8df77b96	POST	undefined	/register
+17-02-2023	11:40:51	6d4b0a28-1479-451e-9d95-755682e40ebc	POST	undefined	/register
+17-02-2023	11:41:13	60ad4b54-abc9-4625-9f31-ccda13ab1391	POST	undefined	/register
+17-02-2023	12:02:03	e1bac0b5-05f6-4090-a4ef-2f6b9bf89042	POST	undefined	/register
+17-02-2023	12:02:47	178defee-2fdc-4b6a-a415-2e583f2ff084	POST	undefined	/auth
+17-02-2023	12:03:47	b2b59141-9295-4d1d-b5a5-00ad849e8e6b	POST	undefined	/auth
+17-02-2023	12:04:07	42867f4c-9502-433b-af1b-1c88fcc58307	POST	undefined	/auth
+17-02-2023	12:04:23	bda414a7-a4de-477e-93e1-038c4753514f	POST	undefined	/register
+17-02-2023	12:04:29	99092c4b-db9c-435f-9f1e-0caf5e0435e0	POST	undefined	/auth
+17-02-2023	12:05:49	f146859f-ce25-4e7a-8270-7268472e7631	POST	undefined	/auth
+17-02-2023	12:06:18	ffab28fc-000d-47f1-ae3b-d9337af56bce	POST	undefined	/register
