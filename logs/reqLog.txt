@@ -58,3 +58,14 @@
 17-02-2023	20:52:13	d9a9b0bd-ae30-4687-9943-a620a9217712	GET	undefined	/refresh
 17-02-2023	20:52:16	35dbed3a-1437-4e0b-93f6-627dda8e7e78	GET	undefined	/logout
 17-02-2023	20:52:18	ec6a297d-4553-451b-99c4-f4e4eeb1c5e5	GET	undefined	/refresh
+18-02-2023	11:27:26	e5b277d6-48cc-4814-b2d0-4b336769ba03	POST	undefined	/auth
+18-02-2023	11:27:38	a18560b6-1e88-4a60-a7b7-0abe7a599e0b	GET	undefined	/employees
+18-02-2023	11:27:54	083bd463-8853-4b75-bdc9-9a2309d40ce2	GET	undefined	/employees
+18-02-2023	11:28:01	45a86b2e-e705-49b2-8d7f-870f75920882	POST	undefined	/employees/
+18-02-2023	11:29:21	079376d1-7f12-4539-953c-0f0b83035167	POST	undefined	/auth
+18-02-2023	11:29:30	32aa4b43-2001-479c-9416-0298e8f8ad4e	GET	undefined	/employees
+18-02-2023	11:29:40	ffb6e687-3ccd-4918-afab-46fdd42b2094	POST	undefined	/employees/
+18-02-2023	11:29:49	92ca5255-212d-4a86-9340-b2548921807f	POST	undefined	/employees/
+18-02-2023	11:30:17	32c9e764-7863-481c-bbe4-ec691e917255	DELETE	undefined	/employees/
+18-02-2023	11:30:23	f244087d-9b12-47fe-bf38-8e6f1066dc45	POST	undefined	/auth
+18-02-2023	11:30:30	8b27848f-71ba-491f-8dbc-6137734e7155	DELETE	undefined	/employees/

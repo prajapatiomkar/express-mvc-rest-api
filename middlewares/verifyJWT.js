@@ -2,8 +2,8 @@ const jwt = require("jsonwebtoken")
 require("dotenv").config()
 
 const verifyJWT = (req, res, next) => {
-    const authHeader = req.headers['authorization']
-    if (!authHeader) {
+    const authHeader = req.headers.authorization || req.headers.Authorization
+    if (!authHeader?.startsWith("Bearer ")) {
         return res.sendStatus(401)
     }
     console.log(authHeader); //Bearer token
@@ -16,7 +16,8 @@ const verifyJWT = (req, res, next) => {
             if (err) {
                 return res.sendStatus(403) // forrbiden invalid
             }
-            req.user = decoded.username
+            req.user = decoded.UserInfo.username
+            req.roles = decoded.UserInfo.roles
             next()
         }
     )

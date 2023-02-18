@@ -27,9 +27,16 @@ const handleLogin = async (req, res) => {
     const match = await bcrypt.compare(password, foundUser.password)
 
     if (match) {
+        const roles = Object.values(foundUser.roles)
         //create JWT to give user permission to access route through token
         const accessToken = jwt.sign(
-            { "username": foundUser.username },
+            {
+                "UserInfo":
+                {
+                    "username": foundUser.username,
+                    "roles": roles
+                }
+            },
             process.env.ACCESS_TOKEN_SECRECT,
             { expiresIn: "30s" }
         )
