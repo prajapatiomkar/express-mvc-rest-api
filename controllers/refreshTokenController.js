@@ -6,7 +6,7 @@ const usersDB = {
 }
 
 const jwt = require("jsonwebtoken")
-require("dotenv").config()
+
 
 
 
