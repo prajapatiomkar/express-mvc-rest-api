@@ -9,18 +9,16 @@ const handleRefreshToken = async (req, res) => {
 
     // console.log(cookies.jwt);
 
-    const refershToken = cookies.jwt
+    const refreshToken = cookies.jwt
 
 
-    const foundUser = await User.findOne({ refershToken }).exec()
+    const foundUser = await User.findOne({ refreshToken }).exec()
     if (!foundUser) {
         return res.sendStatus(403) // Unauthorized
     }
     //evaluate jwt
-
-
     jwt.verify(
-        refershToken,
+        refreshToken,
         process.env.REFRESH_TOKEN_SECRECT,
         (err, decoded) => {
             if (err || foundUser.username !== decoded.username) {
@@ -36,7 +34,7 @@ const handleRefreshToken = async (req, res) => {
                     }
                 },
                 process.env.ACCESS_TOKEN_SECRECT,
-                { expiresIn: "1h" }
+                { expiresIn: "1m" }
             )
             res.json({roles, accessToken })
         }
