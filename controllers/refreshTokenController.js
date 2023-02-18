@@ -1,29 +1,20 @@
-const usersDB = {
-    users: require("../models/users.json"),
-    setUsers: function (data) {
-        this.users = data
-    }
-}
-
+const User = require("../models/User")
 const jwt = require("jsonwebtoken")
 
-
-
-
-const handleRefreshToken = (req, res) => {
+const handleRefreshToken = async (req, res) => {
     const cookies = req.cookies
     if (!cookies?.jwt) {
         return res.sendStatus(401)
     }
 
-    console.log(cookies.jwt);
+    // console.log(cookies.jwt);
 
     const refershToken = cookies.jwt
 
 
-    const foundUser = usersDB.users.find(person => person.refershToken === refershToken)
+    const foundUser = await User.findOne({ refershToken }).exec()
     if (!foundUser) {
-        return res.sendStatus(401) // Unauthorized
+        return res.sendStatus(403) // Unauthorized
     }
     //evaluate jwt
 
@@ -45,9 +36,9 @@ const handleRefreshToken = (req, res) => {
                     }
                 },
                 process.env.ACCESS_TOKEN_SECRECT,
-                { expiresIn: "30s" }
+                { expiresIn: "1h" }
             )
-            res.json({ accessToken })
+            res.json({roles, accessToken })
         }
     )
 

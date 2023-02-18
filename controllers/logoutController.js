@@ -1,12 +1,4 @@
-const usersDB = {
-    users: require("../models/users.json"),
-    setUsers: function (data) {
-        this.users = data
-    }
-}
-
-const fsPromises = require("fs").promises
-const path = require("path")
+const User = require("../models/User")
 
 
 const handleLogout =async (req, res) => {
@@ -18,23 +10,19 @@ const handleLogout =async (req, res) => {
     }
 
     // console.log(cookies.jwt);
-    const refershToken = cookies.jwt
+    const refreshToken = cookies.jwt
 
     // if refershToken in db 
-    const foundUser = usersDB.users.find(person => person.refershToken === refershToken)
+    const foundUser = await User.findOne({refreshToken}).exec()
     if (!foundUser) {
         res.clearCookie("jwt", { httpOnly: true }) // , expiresIn: "1d" 
         return res.sendStatus(203)
     }
 
     // Delete refreshToken in DB
-    const otherUsers = usersDB.users.filter(person => person.refershToken != foundUser.refershToken)
-    const currentUser = { ...foundUser, refershToken: "" }
-    usersDB.setUsers([...otherUsers, currentUser])
-    await fsPromises.writeFile(
-        path.join(__dirname,"..","models","users.json"),
-        JSON.stringify(usersDB.users)
-    )
+   foundUser.refreshToken = "";
+   const result =await foundUser.save()
+   console.log(result);
 
     res.clearCookie("jwt",{httpOnly:true, sameSite: "None", secure: true,}) //secure: true - only serves on https
     res.sendStatus(204)

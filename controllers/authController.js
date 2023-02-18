@@ -1,16 +1,9 @@
-const usersDB = {
-    users: require("../models/users.json"),
-    setUsers: function (data) {
-        this.users = data
-    }
-}
+const User = require("../models/User")
+
 
 const bcrypt = require("bcrypt")
 const jwt = require("jsonwebtoken")
 
-
-const fsPromises = require("fs").promises
-const path = require("path")
 
 const handleLogin = async (req, res) => {
     const { user, password } = req.body
@@ -19,7 +12,7 @@ const handleLogin = async (req, res) => {
             "message": "Username and Password are required"
         })
     }
-    const foundUser = usersDB.users.find(person => person.username === user)
+    const foundUser =await User.findOne({ username: user }).exec()
     if (!foundUser) {
         return res.status(401) // Unauthorized
     }
@@ -38,26 +31,21 @@ const handleLogin = async (req, res) => {
                 }
             },
             process.env.ACCESS_TOKEN_SECRECT,
-            { expiresIn: "30s" }
+            { expiresIn: "1h" }
         )
-        const refershToken = jwt.sign(
+        const refreshToken = jwt.sign(
             { "username": foundUser.username },
             process.env.REFRESH_TOKEN_SECRECT,
             { expiresIn: "1d" }
         )
 
         // Saving refershToken with current user
-        const otherUsers = usersDB.users.filter(person => person.username !== foundUser.username)
-        const currentUser = { ...foundUser, refershToken }
-        usersDB.setUsers([...otherUsers, currentUser])
-
-        await fsPromises.writeFile(
-            path.join(__dirname, "..", "models", "users.json"),
-            JSON.stringify(usersDB.users)
-        )
+        foundUser.refreshToken = refreshToken
+        const result = await foundUser.save()
+        console.log(result);
 
 
-        res.cookie('jwt', refershToken, { httpOnly: true, sameSite: "None", secure: true, maxAge: 24 * 60 * 60 * 1000 }) // 24 Hours 60 minutes 60 second 1000 milli-second
+        res.cookie('jwt', refreshToken, { httpOnly: true, sameSite: "None",  maxAge: 24 * 60 * 60 * 1000 }) // 24 Hours 60 minutes 60 second 1000 milli-second //secure:true
         res.json({ accessToken })
 
 
